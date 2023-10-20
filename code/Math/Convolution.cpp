@@ -9,8 +9,8 @@ void FFT(vector<cpx> &a, bool inv_fft=false){
     while(j >= bit) j -= bit, bit >>= 1;
     if(i < (j += bit)) swap(a[i], a[j]);
   }
-  real_t ang = 2 * acos(-1) / N * (inv_fft ? -1 : 1);
-  for(int i=0; i<N/2; i++) root[i] = cpx(cos(ang * i), sin(ang * i));
+  long double ang = 2 * acosl(-1) / N * (inv_fft ? -1 : 1);
+  for(int i=0; i<N/2; i++) root[i] = cpx(cosl(ang*i), sinl(ang*i));
   /*
   NTT : ang = pow(w, (mod-1)/n) % mod, inv_fft -> ang^{-1}, root[i] = root[i-1] * ang
   XOR Convolution : set roots[*] = 1, a[j+k] = u+v, a[j+k+i/2] = u-v

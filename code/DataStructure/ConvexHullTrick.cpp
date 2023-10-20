@@ -1,3 +1,7 @@
+// 직선 개수 N, 쿼리 횟수 Q일 때 O(N+Q)
+// (최댓값 쿼리) 삽입하는 직선의 기울기는 단조 증가해야 함
+// (최솟값 쿼리) 삽입하는 직선의 기울기는 단조 감소해야 함
+// 쿼리를 하는 x좌표는 단조 증가해야 함
 struct Line{
   ll a, b, c; // y = ax + b, c = line index
   Line(ll a, ll b, ll c) : a(a), b(b), c(c) {}
@@ -10,7 +14,9 @@ int chk(const Line &a, const Line &b, const Line &c) const {
 }
 void insert(Line l){
   if(v.size() > pv && v.back().a == l.a){
-    if(l.b < v.back().b) l = v.back(); v.pop_back();
+    // if min query, then if(l.b > v.back().b)
+    if(l.b < v.back().b) l = v.back();
+    v.pop_back();
   }
   while(v.size() >= pv+2 && chk(v[v.size()-2], v.back(), l)) v.pop_back();
   v.push_back(l);
@@ -20,6 +26,8 @@ p query(ll x){ // if min query, then v[pv].f(x) >= v[pv+1].f(x)
   return {v[pv].f(x), v[pv].c};
 }
 ///// line container start (max query) /////
+// 직선 개수 N 쿼리 개수 Q일 때 O((N+Q) log N)
+// 단조성 제약 조건 없음
 struct Line {
   mutable ll k, m, p;
   bool operator<(const Line& o) const { return k < o.k; }
