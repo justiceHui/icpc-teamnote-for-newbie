@@ -8,10 +8,21 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{import}
-
+\usepackage{multicol}
 \usepackage{teamnote}
 
 \teamnote{Soongsil University}{팀명}{이름1, 이름2, 이름3}
+
+% Guide to use
+  % Fix school name, team name, and teammate name at line 14
+  % If you want to change to 3 columns document...
+    % Erase `twocolumn' at line 6
+    % Add `\begin{multicols*}{3}' after `\begin{document}'
+    % Add `\end{multicols*}' before `\end{document}'
+    % (optional) Add `\vfill\null\columnbreak' after `\maketitlepage' and Erase `\pagebreak' before first section
+  % If you want to reduce margin size
+    % Change teamnote.sty line 3 to...
+    % \usepackage[left=0.3cm,right=0.3cm,top=0.6cm,bottom=0.3cm,headsep=0.1cm,a4paper]{geometry}
 
 \ShowUsage
 \ShowComplexity

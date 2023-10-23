@@ -11,5 +11,6 @@ int ceil(int p, int q){
 }
 
 // a, b >= 0, O(log max(a,b))
+// or use std::gcd, std::lcm in C++17
 int gcd(int a, int b){ return b ? gcd(b, a % b) : a; }
 int lcm(int a, int b){ return a / gcd(a, b) * b; }
